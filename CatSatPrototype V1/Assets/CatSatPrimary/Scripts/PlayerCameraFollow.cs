@@ -2,14 +2,18 @@ using UnityEngine;
 
 public class PlayerCameraFollow : MonoBehaviour
 {
+    // Variable Declaration
     public Transform player;
-    public int vecX;
-    public int vecY;
-    public int vecZ;
+    public float followSpeed;
+    public Vector3 offset;
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
-        transform.position = player.transform.position + new Vector3(vecX, vecY, vecZ);
+        // Use Late Update to ensure follow after player
+        Vector3 desiredPosition = player.position + offset; // Sets initial camera position based off player position
+        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, followSpeed); // Adjusts Camera Follow behavior
+
+        transform.position = smoothedPosition; // Completes movement of camera
     }
 }

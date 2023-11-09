@@ -3,6 +3,12 @@ using UnityEngine;
 
 public class PlayerMain : MonoBehaviour
 {
+    // Variable Declaration
+    public GameObject clickField; // For instantiating the UI Game Object
+    private Vector3 mousePos; // tracks where mouse clicks
+    
+
+
     [SerializeField] private NavMeshAgent _agent = null;
     // Start is called before the first frame update
     void Start()
@@ -22,6 +28,10 @@ public class PlayerMain : MonoBehaviour
             {
                 _agent.SetDestination(hit.point);
             }
+
+            // Click Feedback, Instantiate Prefab Object
+            mousePos = hit.point;
+            Instantiate(clickField, mousePos, Quaternion.identity);
         }
     }
 }
