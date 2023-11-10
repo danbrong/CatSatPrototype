@@ -34,5 +34,15 @@ public class PlayerMain : MonoBehaviour
             Instantiate(clickField, mousePos, Quaternion.identity);
         }
     }
+    void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Player Collision!");
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        Debug.Log("Player Exited");
+    }
+       
 
 }
