@@ -34,4 +34,5 @@ public class PlayerMain : MonoBehaviour
             Instantiate(clickField, mousePos, Quaternion.identity);
         }
     }
+
 }
