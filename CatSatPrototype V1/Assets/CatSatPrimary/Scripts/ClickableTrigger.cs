@@ -10,36 +10,46 @@ public class ClickableTrigger : MonoBehaviour
     public GameObject player;
     public GameObject self;
     public Button clickableMsg;
-
-    void OnTriggerEnter(Collider other)
+    void OnMouseDown()
     {
-        if (player && counter == 1)
+        counter++;
+        if (counter >= 4)
+        {
+            counter = 0;
+        }
+        
+        Debug.Log("You Clicked an Item!");
+        Debug.Log(counter);
+
+        if (counter == 1 || counter == 3)
         {
             clickableMsg.gameObject.SetActive(true);
         }
-        else if (player && counter == 0 || counter == 2)
+        if (counter == 0 || counter == 2)
         {
             clickableMsg.gameObject.SetActive(false);
         }
     }
+    void OnTriggerEnter(Collider other)
+    {
+        if (player && counter == 1 || counter == 3)
+        {
+            clickableMsg.gameObject.SetActive(true);
+        }
+
+        if (player && counter == 0 || counter == 2)
+        {
+            clickableMsg.gameObject.SetActive(false);
+        }
+    }
+    
     void OnTriggerExit(Collider other)
     {
         if (player)
         {
             clickableMsg.gameObject.SetActive(false);
-        }
-    }
-
-    void OnMouseDown()
-    {
-        counter++;
-        Debug.Log("You Clicked an Item!");
-        Debug.Log(counter);
-        
-        if (counter > 1)
-        {
             counter = 0;
         }
-        
     }
 }
+
