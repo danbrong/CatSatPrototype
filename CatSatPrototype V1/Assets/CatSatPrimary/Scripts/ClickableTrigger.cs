@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,10 +8,12 @@ public class ClickableTrigger : MonoBehaviour
     public GameObject player;
     public GameObject self;
     public Button clickableMsg;
+    
+
     void OnMouseDown()
     {
         counter++;
-        if (counter >= 4)
+        if (counter == 2)
         {
             counter = 0;
         }
@@ -21,26 +21,29 @@ public class ClickableTrigger : MonoBehaviour
         Debug.Log("You Clicked an Item!");
         Debug.Log(counter);
 
-        if (counter == 1 || counter == 3)
+        if (counter == 1)
         {
             clickableMsg.gameObject.SetActive(true);
         }
-        if (counter == 0 || counter == 2)
+        if (counter == 0)
         {
             clickableMsg.gameObject.SetActive(false);
         }
+
     }
     void OnTriggerEnter(Collider other)
     {
-        if (player && counter == 1 || counter == 3)
+        if (player)
         {
-            clickableMsg.gameObject.SetActive(true);
-        }
-
-        if (player && counter == 0 || counter == 2)
-        {
-            clickableMsg.gameObject.SetActive(false);
-        }
+            if (counter == 1)
+            {
+                clickableMsg.gameObject.SetActive(true);
+            }
+            if (counter == 0)
+            {
+                clickableMsg.gameObject.SetActive(false);
+            }
+        } 
     }
     
     void OnTriggerExit(Collider other)

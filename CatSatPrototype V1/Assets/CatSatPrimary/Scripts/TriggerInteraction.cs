@@ -9,12 +9,7 @@ public class TriggerInteraction : MonoBehaviour
     public GameObject player;
     public GameObject self;
     public Button message;
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
     void OnTriggerEnter(Collider other)
     {
         Debug.Log("Item Collision!");
